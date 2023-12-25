@@ -1,0 +1,54 @@
+@startuml diagrama
+class Usuario {
+  + id: int
+  + nombre: string
+  + email: string
+  + password: string
+  --
+  + crearCurso(): Curso
+  + obtenerCursos(): Collection<Curso>
+}
+
+class Curso {
+  + id: int
+  + titulo: string
+  + descripcion: text
+  + usuario_id: int
+  --
+  + usuario(): Usuario
+  + modulos(): Collection<Modulo>
+}
+
+class Modulo {
+  + id: int
+  + titulo: string
+  + curso_id: int
+  --
+  + curso(): Curso
+  + materias(): Collection<Materia>
+}
+
+class Materia {
+  + id: int
+  + titulo: string
+  + modulo_id: int
+  --
+  + modulo(): Modulo
+  + temas(): Collection<Tema>
+}
+
+class Tema {
+  + id: int
+  + titulo: string
+  + contenido: text
+  + materia_id: int
+  --
+  + materia(): Materia
+}
+
+Usuario "1" -- "n" Curso : Tiene
+Curso "1" -- "n" Modulo : Contiene
+Modulo "1" -- "n" Materia : Contiene
+Materia "1" -- "n" Tema : Contiene
+@enduml
+```
