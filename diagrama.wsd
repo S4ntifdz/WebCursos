@@ -1,54 +1,55 @@
 @startuml diagrama
-class Usuario {
+class User {
   + id: int
-  + nombre: string
+  + name: string
   + email: string
   + password: string
   --
-  + crearCurso(): Curso
-  + obtenerCursos(): Collection<Curso>
+  + createCourse(): Course
+  + getCourses(): Collection<Course>
 }
 
-class Curso {
+class Course {
   + id: int
-  + titulo: string
-  + descripcion: text
-  + usuario_id: int
+  + title: string
+  + description: text
+  + user_id: int
   --
-  + usuario(): Usuario
-  + modulos(): Collection<Modulo>
+  + user(): User
+  + modules(): Collection<Module>
 }
 
-class Modulo {
+class Module {
   + id: int
-  + titulo: string
-  + curso_id: int
+  + title: string
+  + course_id: int
   --
-  + curso(): Curso
-  + materias(): Collection<Materia>
+  + course(): Course
+  + subjects(): Collection<Subject>
 }
 
-class Materia {
+class Subject {
   + id: int
-  + titulo: string
-  + modulo_id: int
+  + title: string
+  + module_id: int
   --
-  + modulo(): Modulo
-  + temas(): Collection<Tema>
+  + module(): Module
+  + topics(): Collection<Topic>
 }
 
-class Tema {
+class Topic {
   + id: int
-  + titulo: string
-  + contenido: text
-  + materia_id: int
+  + title: string
+  + content: text
+  + subject_id: int
   --
-  + materia(): Materia
+  + subject(): Subject
 }
 
-Usuario "1" -- "n" Curso : Tiene
-Curso "1" -- "n" Modulo : Contiene
-Modulo "1" -- "n" Materia : Contiene
-Materia "1" -- "n" Tema : Contiene
+User "1" -- "n" Course : Has
+Course "1" -- "n" Module : Contains
+Module "1" -- "n" Subject : Contains
+Subject "1" -- "n" Topic : Contains
+
 @enduml
 ```
